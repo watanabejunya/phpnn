@@ -1,4 +1,10 @@
-/vendor/
-/tests/data/out/
-phpunit.phar
-/dest/
+## .gitignore ##
+!.gitignore
+
+dest/*
+cache/*
+vendor/
+
+!dest/
+!cache/
+!.gitkeep

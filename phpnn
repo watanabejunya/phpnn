@@ -1,0 +1,23 @@
+#!/usr/local/bin/php -q
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$classmap = include __DIR__ . '/config/classmap.php';
+
+$options = getopt('', ['no-cache']);
+
+if ($argc < 2) {
+    echo "No arguments.\n";
+    exit(1);
+} elseif (! class_exists($className = $classmap[$argv[1]] ?? $argv[1] ?? '')) {
+    echo "No such a simulator class.\n";
+    exit(1);
+}
+
+putenv('START_TIME=' . date('mdHi'));
+
+// Run simulator.
+$simulator = new $className($options);
+
+exit($simulator->run());
